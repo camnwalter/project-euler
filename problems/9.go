@@ -19,5 +19,4 @@ outer:
 	}
 
 	fmt.Println("abc =", a*b*c)
-
 }

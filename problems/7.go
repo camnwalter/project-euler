@@ -1,9 +1,12 @@
 package problems
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func Seven() {
-	nthPrime := 1
+	nthPrime := 0
 
 	prime := 2
 
@@ -28,12 +31,20 @@ func NextPrime(n int) int {
 }
 
 func IsPrime(n int) bool {
-	for i := 2; i < n; {
-		if n%i == 0 {
+	if n == 2 || n == 3 || n == 5 || n == 7 {
+		return true
+	}
+
+	if n%2 == 0 || n%3 == 0 {
+		return false
+	}
+
+	for i := 5; i <= int(math.Floor(math.Sqrt(float64(n)))); {
+		if n%i == 0 || n%(i+2) == 0 {
 			return false
 		}
 
-		i++
+		i += 6
 	}
 
 	return true
