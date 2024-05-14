@@ -3,7 +3,7 @@ package problems
 import "fmt"
 
 func Problem(num int) {
-	problems := []func(){One, Two, Three, Four, Five, Six}
+	problems := []func(){One, Two, Three, Four, Five, Six, Seven}
 
 	if num == 0 {
 		fmt.Println("Running all problems.")
