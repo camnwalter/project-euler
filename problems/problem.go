@@ -5,7 +5,7 @@ import "fmt"
 func Problem(num int) {
 	problems := []func(){
 		One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Twelve, Thirteen, Fourteen, Fifteen,
-		Sixteen, Seventeen, Eighteen, Nineteen,
+		Sixteen, Seventeen, Eighteen, Nineteen, Twenty,
 	}
 
 	if num == 0 {
