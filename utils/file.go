@@ -6,7 +6,7 @@ import (
 )
 
 func GetFileLines(path string) ([]string, error) {
-	bytes, err := os.ReadFile("inputs/18.txt")
+	bytes, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
