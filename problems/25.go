@@ -2,7 +2,6 @@ package problems
 
 import (
 	"fmt"
-	"slices"
 )
 
 func TwentyFive() {
@@ -25,36 +24,38 @@ func BigFib(n int, cache map[int][]int) []int {
 		return cache[n]
 	}
 
-	cache[n] = arrayAdd(slices.Clone(BigFib(n-1, cache)), slices.Clone(BigFib(n-2, cache)))
+	cache[n] = arrayAdd(BigFib(n-1, cache), BigFib(n-2, cache))
 
 	return cache[n]
 }
 
-func arrayAdd(data []int, n []int) []int {
+func arrayAdd(a []int, b []int) []int {
+	out := make([]int, 0)
+
 	carry := 0
-	j := 0
-	for i := 0; i < len(data); i++ {
+	for i := 0; i < len(a); i++ {
 		addend := 0
-		if j < len(n) {
-			addend = n[j]
-			j++
+		if i < len(b) {
+			addend = b[i]
 		}
 
-		sum := data[i] + addend + carry
+		sum := a[i] + addend + carry
 
-		data[i] = sum % 10
+		out = append(out, sum%10)
 		carry = sum / 10
 	}
 
-	for j < len(n) {
-		data = append(data, n[j])
-		j++
+	for i := len(a); i < len(b); i++ {
+		sum := b[i] + carry
+
+		out = append(out, sum%10)
+		carry = sum / 10
 	}
 
 	for carry != 0 {
-		data = append(data, carry%10)
+		out = append(out, carry%10)
 		carry /= 10
 	}
 
-	return data
+	return out
 }
