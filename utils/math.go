@@ -49,3 +49,13 @@ func SumArray(nums []int) int {
 
 	return sum
 }
+
+func Pow(a int, b int) int {
+	product := 1
+
+	for range b {
+		product *= a
+	}
+
+	return product
+}
