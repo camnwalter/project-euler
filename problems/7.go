@@ -2,7 +2,6 @@ package problems
 
 import (
 	"fmt"
-	"math"
 )
 
 func Seven() {
@@ -10,7 +9,7 @@ func Seven() {
 
 	prime := 2
 
-	for ; nthPrime < 10_001; nthPrime++ {
+	for ; nthPrime < 10_000; nthPrime++ {
 		prime = NextPrime(prime)
 	}
 
@@ -31,7 +30,11 @@ func NextPrime(n int) int {
 }
 
 func IsPrime(n int) bool {
-	if n == 2 || n == 3 || n == 5 || n == 7 {
+	if n <= 1 {
+		return false
+	}
+
+	if n == 2 || n == 3 {
 		return true
 	}
 
@@ -39,12 +42,10 @@ func IsPrime(n int) bool {
 		return false
 	}
 
-	for i := 5; i <= int(math.Floor(math.Sqrt(float64(n)))); {
+	for i := 5; i*i <= n; i += 6 {
 		if n%i == 0 || n%(i+2) == 0 {
 			return false
 		}
-
-		i += 6
 	}
 
 	return true
