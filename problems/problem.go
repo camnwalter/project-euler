@@ -9,6 +9,7 @@ func Problem(num int) {
 		Nineteen, Twenty, TwentyOne, TwentyTwo, TwentyThree, TwentyFour,
 		TwentyFive, TwentySix, TwentySeven, TwentyEight, TwentyNine, Thirty,
 		ThirtyOne, ThirtyTwo, ThirtyThree, ThirtyFour, ThirtyFive, ThirtySix,
+		ThirtySeven,
 	}
 
 	if num == 0 {

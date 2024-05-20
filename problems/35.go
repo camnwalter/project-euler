@@ -8,7 +8,6 @@ import (
 )
 
 func ThirtyFive() {
-
 	primes := PrimeSieve(1_000_000)
 
 	count := 0
