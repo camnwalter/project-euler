@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -58,4 +59,46 @@ func Pow(a int, b int) int {
 	}
 
 	return product
+}
+
+func GetFactors(n int) []int {
+	out := make([]int, 0)
+
+	out = AddIfAbsent(out, 1)
+	out = AddIfAbsent(out, n)
+
+	if n == 1 {
+		return out
+	}
+
+	max := n / 2
+
+	for i := 2; i <= max; i++ {
+		if n%i == 0 {
+			max = n / i
+			out = AddIfAbsent(out, i, max)
+		}
+	}
+
+	return out
+}
+
+func GCF(a int, b int) int {
+	aFactors := GetFactors(a)
+	bFactors := GetFactors(b)
+
+	commonFactors := make([]int, 0)
+	for _, factor := range aFactors {
+		if slices.Contains(bFactors, factor) {
+			commonFactors = AddIfAbsent(commonFactors, factor)
+		}
+	}
+
+	for _, factor := range bFactors {
+		if slices.Contains(aFactors, factor) {
+			commonFactors = AddIfAbsent(commonFactors, factor)
+		}
+	}
+
+	return Max(commonFactors...)
 }
