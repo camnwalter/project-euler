@@ -2,7 +2,8 @@ package problems
 
 import (
 	"fmt"
-	"strconv"
+
+	"github.com/camnwalter/project-euler/utils"
 )
 
 func Four() {
@@ -15,7 +16,7 @@ func Four() {
 
 		for b < 1000 {
 			mult := a * b
-			if IsPalindromic(mult) && mult > max {
+			if IsPalindrome(fmt.Sprint(mult)) && mult > max {
 				max = mult
 			}
 
@@ -28,20 +29,6 @@ func Four() {
 	fmt.Println("max palindrome =", max)
 }
 
-func IsPalindromic(n int) bool {
-	str := strconv.Itoa(n)
-
-	front := 0
-	back := len(str) - 1
-
-	for front <= back {
-		if str[front] != str[back] {
-			return false
-		}
-
-		front++
-		back--
-	}
-
-	return true
+func IsPalindrome(n string) bool {
+	return n == utils.Reverse(n)
 }

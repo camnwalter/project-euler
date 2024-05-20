@@ -3,8 +3,6 @@ package problems
 import (
 	"fmt"
 	"strconv"
-
-	"github.com/camnwalter/project-euler/utils"
 )
 
 func ThirtySix() {
@@ -20,8 +18,4 @@ func ThirtySix() {
 	}
 
 	fmt.Println("sum of palindromic base 10 and 2 =", sum)
-}
-
-func IsPalindrome(num string) bool {
-	return num == utils.Reverse(num)
 }

@@ -89,10 +89,10 @@ func Filter[T any](slice []T, filterFunc func(val T, index int) bool) []T {
 }
 
 func Map[In any, Out any](slice []In, mapFunc func(val In, index int) Out) []Out {
-	out := make([]Out, len(slice))
+	out := make([]Out, 0)
 
 	for i, v := range slice {
-		out[i] = mapFunc(v, i)
+		out = append(out, mapFunc(v, i))
 	}
 
 	return out

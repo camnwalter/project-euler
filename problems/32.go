@@ -16,9 +16,16 @@ func ThirtyTwo() {
 	for x := 1; x <= 98; x++ {
 		for y := 1; y <= 9876; y++ {
 			product := x * y
-			if !pandigitals[product] && IsPandigital(x, y) {
-				sum += product
-				pandigitals[product] = true
+			if !pandigitals[product] {
+
+				digits := utils.ToDigitArray(x)
+				digits = append(digits, utils.ToDigitArray(y)...)
+				digits = append(digits, utils.ToDigitArray(x*y)...)
+
+				if IsPandigital(utils.FromDigitArray(digits)) {
+					sum += product
+					pandigitals[product] = true
+				}
 			}
 		}
 	}
@@ -26,10 +33,8 @@ func ThirtyTwo() {
 	fmt.Println("sum of pandigital products =", sum)
 }
 
-func IsPandigital(a int, b int) bool {
-	digits := utils.ToDigitArray(a)
-	digits = append(digits, utils.ToDigitArray(b)...)
-	digits = append(digits, utils.ToDigitArray(a*b)...)
+func IsPandigital(n int) bool {
+	digits := utils.ToDigitArray(n)
 
 	if len(digits) != 9 {
 		return false
