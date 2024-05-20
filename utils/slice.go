@@ -64,6 +64,14 @@ func Join[val any](slice []val, separator string) string {
 			out += fmt.Sprint(separator)
 		}
 	}
+	return out
+}
+
+func DefaultSlice[val any](size int, initial val) []val {
+	out := make([]val, size)
+	for i := range size {
+		out[i] = initial
+	}
 
 	return out
 }
