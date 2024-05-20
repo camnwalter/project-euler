@@ -8,7 +8,7 @@ func Problem(num int) {
 		Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen,
 		Nineteen, Twenty, TwentyOne, TwentyTwo, TwentyThree, TwentyFour,
 		TwentyFive, TwentySix, TwentySeven, TwentyEight, TwentyNine, Thirty,
-		ThirtyOne, ThirtyTwo, ThirtyThree, ThirtyFour,
+		ThirtyOne, ThirtyTwo, ThirtyThree, ThirtyFour, ThirtyFive,
 	}
 
 	if num == 0 {

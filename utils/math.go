@@ -41,6 +41,16 @@ func ToDigitArray(n int) []int {
 	return out
 }
 
+func FromDigitArray(n []int) int {
+	out := 0
+
+	for i, digit := range n {
+		out += digit * Pow(10, i)
+	}
+
+	return out
+}
+
 func SumArray(nums []int) int {
 	sum := 0
 

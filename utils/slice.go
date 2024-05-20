@@ -5,7 +5,7 @@ import (
 	"slices"
 )
 
-func AddIfAbsent[val comparable](slice []val, values ...val) []val {
+func AddIfAbsent[T comparable](slice []T, values ...T) []T {
 	for _, value := range values {
 		if !slices.Contains(slice, value) {
 			slice = append(slice, value)
@@ -15,15 +15,15 @@ func AddIfAbsent[val comparable](slice []val, values ...val) []val {
 	return slice
 }
 
-func Swap[val any](slice []val, a int, b int) {
+func Swap[T any](slice []T, a int, b int) {
 	slice[a], slice[b] = slice[b], slice[a]
 }
 
-func Permutations[val any](slice []val) [][]val {
-	return generate(len(slice), slice, make([][]val, 0))
+func Permutations[T any](slice []T) [][]T {
+	return generate(len(slice), slice, make([][]T, 0))
 }
 
-func generate[val any](n int, A []val, out [][]val) [][]val {
+func generate[T any](n int, A []T, out [][]T) [][]T {
 	// c is an encoding of the stack state. c[k] encodes the for-loop counter for when generate(k - 1, A) is called
 	c := make([]int, n)
 
@@ -54,7 +54,7 @@ func generate[val any](n int, A []val, out [][]val) [][]val {
 	return out
 }
 
-func Join[val any](slice []val, separator string) string {
+func Join[T any](slice []T, separator string) string {
 	out := ""
 
 	for i, v := range slice {
@@ -67,10 +67,32 @@ func Join[val any](slice []val, separator string) string {
 	return out
 }
 
-func DefaultSlice[val any](size int, initial val) []val {
-	out := make([]val, size)
+func DefaultSlice[T any](size int, initial T) []T {
+	out := make([]T, size)
 	for i := range size {
 		out[i] = initial
+	}
+
+	return out
+}
+
+func Filter[T any](slice []T, filterFunc func(val T, index int) bool) []T {
+	out := make([]T, 0)
+
+	for i, v := range slice {
+		if filterFunc(v, i) {
+			out = append(out, v)
+		}
+	}
+
+	return out
+}
+
+func Map[In any, Out any](slice []In, mapFunc func(val In, index int) Out) []Out {
+	out := make([]Out, len(slice))
+
+	for i, v := range slice {
+		out[i] = mapFunc(v, i)
 	}
 
 	return out
