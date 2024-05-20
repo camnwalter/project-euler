@@ -28,19 +28,19 @@ func ThirtyThree() {
 				d1 := d*10 + commonDigit
 				d2 := commonDigit*10 + d
 
-				if isCurious(n1, d1, commonDigit) {
+				if commonDigitReduction(n1, d1, commonDigit) {
 					num *= n1
 					denom *= d1
 				}
-				if isCurious(n1, d2, commonDigit) {
+				if commonDigitReduction(n1, d2, commonDigit) {
 					num *= n1
 					denom *= d2
 				}
-				if isCurious(n2, d1, commonDigit) {
+				if commonDigitReduction(n2, d1, commonDigit) {
 					num *= n2
 					denom *= d1
 				}
-				if isCurious(n2, d2, commonDigit) {
+				if commonDigitReduction(n2, d2, commonDigit) {
 					num *= n2
 					denom *= d2
 				}
@@ -54,7 +54,7 @@ func ThirtyThree() {
 }
 
 // a / b
-func isCurious(a int, b int, common int) bool {
+func commonDigitReduction(a int, b int, common int) bool {
 	if a >= b {
 		return false
 	}
