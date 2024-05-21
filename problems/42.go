@@ -2,6 +2,7 @@ package problems
 
 import (
 	"fmt"
+	"math"
 	"os"
 	"strings"
 )
@@ -31,15 +32,11 @@ func FortyTwo() {
 	fmt.Println("number of triangle words =", triangles)
 }
 
-func IsTriangleNumber(n int) bool {
-	// i(i+1)/2 = n
-	// i(i+1) = 2n
+func IsTriangleNumber(t int) bool {
+	// t = n (n + 1) / 2
+	// .5n^2 + .5n - t = 0
+	// t = (-1 + sqrt(1 + 8t)) / 2
 
-	for i := 1; i*i+1 <= 2*n; i++ {
-		if i*(i+1)/2 == n {
-			return true
-		}
-	}
-
-	return false
+	n := (-1 + math.Sqrt(float64(8*t+1))) / 2
+	return math.Round(n) == n
 }
