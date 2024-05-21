@@ -31,6 +31,6 @@ func IsPentagonal(p int) bool {
 	// 1.5n^2 - .5n - p = 0
 	// n = (1 + sqrt(1 + 24p)) / 6
 
-	n := (1 + math.Sqrt(float64(24*p+1))) / 6
+	n := (1 + math.Sqrt(float64(1+24*p))) / 6
 	return math.Round(n) == n
 }

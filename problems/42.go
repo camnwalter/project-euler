@@ -24,7 +24,7 @@ func FortyTwo() {
 			wordSum += int(c - 'A' + 1)
 		}
 
-		if IsTriangleNumber(wordSum) {
+		if IsTriangle(wordSum) {
 			triangles++
 		}
 	}
@@ -32,11 +32,11 @@ func FortyTwo() {
 	fmt.Println("number of triangle words =", triangles)
 }
 
-func IsTriangleNumber(t int) bool {
+func IsTriangle(t int) bool {
 	// t = n (n + 1) / 2
 	// .5n^2 + .5n - t = 0
 	// t = (-1 + sqrt(1 + 8t)) / 2
 
-	n := (-1 + math.Sqrt(float64(8*t+1))) / 2
+	n := (-1 + math.Sqrt(float64(1+8*t))) / 2
 	return math.Round(n) == n
 }
