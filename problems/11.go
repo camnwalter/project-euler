@@ -12,7 +12,7 @@ import (
 func Eleven() {
 	bytes, err := os.ReadFile("inputs/11.txt")
 	if err != nil {
-		fmt.Println("Could not read input")
+		fmt.Println(err)
 		return
 	}
 

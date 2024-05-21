@@ -16,7 +16,7 @@ func main() {
 
 	problemNumber, err := strconv.Atoi(os.Args[1])
 	if err != nil {
-		fmt.Println("Unknown problem number provided")
+		fmt.Println(err)
 		return
 	}
 

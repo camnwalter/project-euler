@@ -10,7 +10,7 @@ func Eight() {
 
 	bytes, err := os.ReadFile("inputs/8.txt")
 	if err != nil {
-		fmt.Println("error reading input")
+		fmt.Println(err)
 		return
 	}
 

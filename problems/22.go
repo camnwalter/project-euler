@@ -11,7 +11,7 @@ import (
 func TwentyTwo() {
 	lines, err := utils.GetFileLines("inputs/22.txt")
 	if err != nil {
-		fmt.Println("Could not read input")
+		fmt.Println(err)
 	}
 
 	names := strings.Split(lines[0], ",")

@@ -11,7 +11,7 @@ import (
 func Eighteen() {
 	lines, err := utils.GetFileLines("inputs/18.txt")
 	if err != nil {
-		fmt.Println("Could not read file")
+		fmt.Println(err)
 		return
 	}
 

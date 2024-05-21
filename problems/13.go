@@ -10,7 +10,7 @@ import (
 func Thirteen() {
 	bytes, err := os.ReadFile("inputs/13.txt")
 	if err != nil {
-		fmt.Println("Could not read input")
+		fmt.Println(err)
 		return
 	}
 
