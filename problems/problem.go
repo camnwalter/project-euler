@@ -11,6 +11,7 @@ func Problem(num int) {
 		ThirtyOne, ThirtyTwo, ThirtyThree, ThirtyFour, ThirtyFive, ThirtySix,
 		ThirtySeven, ThirtyEight, ThirtyNine, Forty, FortyOne, FortyTwo,
 		FortyThree, FortyFour, FortyFive, FortySix, FortySeven, FortyEight,
+		FortyNine,
 	}
 
 	if num == 0 {
