@@ -112,3 +112,13 @@ func GCF(a int, b int) int {
 
 	return Max(commonFactors...)
 }
+
+// place (ones = 1, tens = 2, etc)
+func GetDigit(n int, digit int) int {
+	return (n % Pow(10, digit)) / Pow(10, digit-1)
+}
+
+// place (ones = 1, tens = 2, etc)
+func GetDigits(n int, min int, max int) int {
+	return (n % Pow(10, max)) / Pow(10, min-1)
+}
