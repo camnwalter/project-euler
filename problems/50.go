@@ -23,6 +23,9 @@ func Fifty() {
 			prime := primes[j]
 
 			currentSum += prime
+			if currentSum > 1_000_000 {
+				break
+			}
 
 			if primeMap[currentSum] && j-i > maxLen {
 				maxPrime = currentSum
