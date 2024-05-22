@@ -2,23 +2,26 @@ package problems
 
 import (
 	"fmt"
-	"math/big"
-	"slices"
+
+	"github.com/camnwalter/project-euler/big"
+	"github.com/camnwalter/project-euler/utils"
 )
 
 func TwentyNine() {
+	min := 2
+	max := 100
+
 	uniques := make([]string, 0)
 
-	for a := 2; a <= 100; a++ {
-		for b := 2; b <= 100; b++ {
-			a := big.NewInt(int64(a))
-			b := big.NewInt(int64(b))
+	for a := min; a <= max; a++ {
+		aBig := big.New(a)
 
-			value := a.Exp(a, b, nil)
-
-			if !slices.Contains(uniques, value.String()) {
-				uniques = append(uniques, value.String())
+		for b := min; b <= max; b++ {
+			out := big.New(1)
+			for range b {
+				out = out.Times(aBig)
 			}
+			uniques = utils.AddIfAbsent(uniques, out.String())
 		}
 	}
 

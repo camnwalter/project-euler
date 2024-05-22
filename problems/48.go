@@ -1,17 +1,23 @@
 package problems
 
-import (
-	"fmt"
-	"math/big"
-)
+import "fmt"
 
 func FortyEight() {
-	sum := big.NewInt(0)
+	sum := 0
+	mod := 10_000_000_000
+
+	// only care about last 10 digits
+
 	for n := 1; n <= 1000; n++ {
-		bigN := big.NewInt(int64(n))
-		sum = sum.Add(sum, bigN.Exp(bigN, bigN, nil))
+		product := 1
+		for range n {
+			product *= n
+			product %= mod
+		}
+
+		sum += product
+		sum %= mod
 	}
 
-	out := sum.String()
-	fmt.Println(out[len(out)-10:])
+	fmt.Println(sum)
 }

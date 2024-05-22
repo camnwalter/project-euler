@@ -2,20 +2,21 @@ package problems
 
 import (
 	"fmt"
-	"math/big"
-	"strconv"
-	"strings"
+
+	"github.com/camnwalter/project-euler/big"
 )
 
 func Sixteen() {
-	bigNumber := big.NewInt(2)
-	bigNumber.Exp(bigNumber, big.NewInt(1000), nil)
+	bigNumber := big.New(2)
+	out := big.New(1)
 
-	digits := bigNumber.String()
+	for range 1000 {
+		out = out.Times(bigNumber)
+	}
+
 	sum := 0
-	for _, digit := range strings.Split(digits, "") {
-		num, _ := strconv.Atoi(digit)
-		sum += num
+	for _, digit := range out.Digits {
+		sum += digit
 	}
 
 	fmt.Println("sum =", sum)
