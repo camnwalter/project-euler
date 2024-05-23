@@ -1,9 +1,6 @@
 package problems
 
-import (
-	"fmt"
-	"strings"
-)
+import "strings"
 
 var small = []string{
 	"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
@@ -14,19 +11,19 @@ var tens = []string{
 	"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety",
 }
 
-func Seventeen() {
+func Seventeen() int {
 	length := 0
 
 	replacer := strings.NewReplacer(" ", "", "-", "")
 
 	for n := 1; n <= 1000; n++ {
-		length += len(replacer.Replace(IntToWord(n)))
+		length += len(replacer.Replace(intToWord(n)))
 	}
 
-	fmt.Println("length =", length)
+	return length
 }
 
-func IntToWord(n int) string {
+func intToWord(n int) string {
 	if n <= 19 {
 		return small[n]
 	}
@@ -38,7 +35,7 @@ func IntToWord(n int) string {
 			return tens[n/10]
 		}
 
-		return tens[n/10] + "-" + IntToWord(rest)
+		return tens[n/10] + "-" + intToWord(rest)
 	}
 
 	if n <= 999 {
@@ -48,7 +45,7 @@ func IntToWord(n int) string {
 			return small[n/100] + " hundred"
 		}
 
-		return small[n/100] + " hundred and " + IntToWord(rest)
+		return small[n/100] + " hundred and " + intToWord(rest)
 	}
 
 	return "one thousand"

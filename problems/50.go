@@ -1,11 +1,9 @@
 package problems
 
-import (
-	"fmt"
-)
+import "github.com/camnwalter/project-euler/utils"
 
-func Fifty() {
-	primes := PrimeSieve(1_000_000)
+func Fifty() int {
+	primes := utils.PrimeSieve(1_000_000)
 	primeMap := make(map[int]bool)
 	for _, prime := range primes {
 		primeMap[prime] = true
@@ -34,5 +32,5 @@ func Fifty() {
 		}
 	}
 
-	fmt.Println("max prime =", maxPrime, "length", maxLen)
+	return maxPrime
 }

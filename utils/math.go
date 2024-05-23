@@ -1,44 +1,41 @@
 package utils
 
 import (
+	"math"
 	"slices"
 	"strconv"
 	"strings"
 )
 
-func Min(nums ...int) int {
-	min := nums[0]
-
-	for _, num := range nums {
-		if num < min {
-			min = num
-		}
+func Combination(n int, k int) int {
+	product := 1
+	for i := 0; i < k; i++ {
+		product *= (n - i)
+		product /= (i + 1)
 	}
-
-	return min
+	return product
 }
 
-func Max(nums ...int) int {
-	max := nums[0]
-
-	for _, num := range nums {
-		if num > max {
-			max = num
-		}
+func Factorial(n int) int {
+	if n <= 1 {
+		return 1
 	}
 
-	return max
+	product := 1
+
+	for i := 1; i <= n; i++ {
+		product *= i
+	}
+
+	return product
 }
 
-func ToDigitArray(n int) []int {
-	out := make([]int, 0)
-
-	for _, digit := range strings.Split(Reverse(strconv.Itoa(n)), "") {
-		digit, _ := strconv.Atoi(digit)
-		out = append(out, digit)
+func Fib(n int) int {
+	if n <= 1 {
+		return 1
 	}
 
-	return out
+	return Fib(n-1) + Fib(n-2)
 }
 
 func FromDigitArray(n []int) int {
@@ -46,48 +43,6 @@ func FromDigitArray(n []int) int {
 
 	for i, digit := range n {
 		out += digit * Pow(10, i)
-	}
-
-	return out
-}
-
-func SumArray(nums []int) int {
-	sum := 0
-
-	for _, num := range nums {
-		sum += num
-	}
-
-	return sum
-}
-
-func Pow(a int, b int) int {
-	product := 1
-
-	for range b {
-		product *= a
-	}
-
-	return product
-}
-
-func GetFactors(n int) []int {
-	out := make([]int, 0)
-
-	out = AddIfAbsent(out, 1)
-	out = AddIfAbsent(out, n)
-
-	if n == 1 {
-		return out
-	}
-
-	max := n / 2
-
-	for i := 2; i <= max; i++ {
-		if n%i == 0 {
-			max = n / i
-			out = AddIfAbsent(out, i, max)
-		}
 	}
 
 	return out
@@ -121,4 +76,179 @@ func GetDigit(n int, digit int) int {
 // place (ones = 1, tens = 2, etc)
 func GetDigits(n int, min int, max int) int {
 	return (n % Pow(10, max)) / Pow(10, min-1)
+}
+
+func GetFactors(n int) []int {
+	out := make([]int, 0)
+
+	out = AddIfAbsent(out, 1)
+	out = AddIfAbsent(out, n)
+
+	if n == 1 {
+		return out
+	}
+
+	max := n / 2
+
+	for i := 2; i <= max; i++ {
+		if n%i == 0 {
+			max = n / i
+			out = AddIfAbsent(out, i, max)
+		}
+	}
+
+	return out
+}
+
+func GetProperDivisors(n int) []int {
+	out := make([]int, 0)
+
+	if n == 1 {
+		return out
+	}
+
+	out = append(out, 1)
+
+	max := n / 2
+
+	for i := 2; i <= max; i++ {
+		if n%i == 0 {
+			max = n / i
+			out = AddIfAbsent(out, i, max)
+		}
+	}
+
+	return out
+}
+
+func IsHexagonal(h int) bool {
+	// h = n (2n - 1)
+	// 2n^2 - n - h = 0
+	// n = (1 + sqrt(1 + 8h)) / 4
+	n := (1 + math.Sqrt(float64(1+8*h))) / 4
+	return math.Round(n) == n
+}
+
+func IsPentagonal(p int) bool {
+	// p = n (3n - 1) / 2
+	// 1.5n^2 - .5n - p = 0
+	// n = (1 + sqrt(1 + 24p)) / 6
+
+	n := (1 + math.Sqrt(float64(1+24*p))) / 6
+	return math.Round(n) == n
+}
+
+func IsPerfectSquare(n int) (bool, int) {
+	sqrt := math.Sqrt(float64(n))
+
+	return math.Round(sqrt) == sqrt, int(sqrt)
+}
+
+func IsPrime(n int) bool {
+	if n <= 1 {
+		return false
+	}
+
+	if n == 2 || n == 3 {
+		return true
+	}
+
+	if n%2 == 0 || n%3 == 0 {
+		return false
+	}
+
+	for i := 5; i*i <= n; i += 6 {
+		if n%i == 0 || n%(i+2) == 0 {
+			return false
+		}
+	}
+
+	return true
+}
+
+func IsTriangle(t int) bool {
+	// t = n (n + 1) / 2
+	// .5n^2 + .5n - t = 0
+	// t = (-1 + sqrt(1 + 8t)) / 2
+
+	n := (-1 + math.Sqrt(float64(1+8*t))) / 2
+	return math.Round(n) == n
+}
+
+func Max(nums ...int) int {
+	max := nums[0]
+
+	for _, num := range nums {
+		if num > max {
+			max = num
+		}
+	}
+
+	return max
+}
+
+func Min(nums ...int) int {
+	min := nums[0]
+
+	for _, num := range nums {
+		if num < min {
+			min = num
+		}
+	}
+
+	return min
+}
+
+func Pow(a int, b int) int {
+	product := 1
+
+	for range b {
+		product *= a
+	}
+
+	return product
+}
+
+func PrimeSieve(upperBound int) []int {
+	primes := DefaultSlice(upperBound, true)
+	primes[0] = false
+	primes[1] = false
+
+	for i := 2; i*i < upperBound; i++ {
+		if primes[i] {
+			for j := i * i; j < upperBound; j += i {
+				primes[j] = false
+			}
+		}
+	}
+
+	out := make([]int, 0)
+	for num, isPrime := range primes {
+		if isPrime {
+			out = append(out, num)
+		}
+	}
+
+	return out
+}
+
+func SumArray(nums []int) int {
+	sum := 0
+
+	for _, num := range nums {
+		sum += num
+	}
+
+	return sum
+}
+
+func ToDigitArray(n int) []int {
+	out := make([]int, 0)
+
+	for _, digit := range strings.Split(Reverse(strconv.Itoa(n)), "") {
+		digit, _ := strconv.Atoi(digit)
+		out = append(out, digit)
+	}
+
+	return out
 }

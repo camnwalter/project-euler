@@ -1,17 +1,8 @@
 package problems
 
-import "fmt"
+import "github.com/camnwalter/project-euler/utils"
 
-func Ten() {
-	limit := 2_000_000
-
-	sum := 0
-	prime := 2
-
-	for prime < limit {
-		sum += prime
-		prime = NextPrime(prime)
-	}
-
-	fmt.Println("sum of primes =", sum)
+func Ten() int {
+	primes := utils.PrimeSieve(2_000_000)
+	return utils.SumArray(primes)
 }

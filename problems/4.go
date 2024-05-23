@@ -6,7 +6,7 @@ import (
 	"github.com/camnwalter/project-euler/utils"
 )
 
-func Four() {
+func Four() int {
 	max := 0
 
 	a := 100
@@ -16,7 +16,7 @@ func Four() {
 
 		for b < 1000 {
 			mult := a * b
-			if IsPalindrome(fmt.Sprint(mult)) && mult > max {
+			if utils.IsPalindrome(fmt.Sprint(mult)) && mult > max {
 				max = mult
 			}
 
@@ -26,9 +26,5 @@ func Four() {
 		a++
 	}
 
-	fmt.Println("max palindrome =", max)
-}
-
-func IsPalindrome(n string) bool {
-	return n == utils.Reverse(n)
+	return max
 }

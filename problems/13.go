@@ -1,46 +1,43 @@
 package problems
 
 import (
-	"fmt"
-	"os"
-	"strconv"
-	"strings"
+	"slices"
+
+	"github.com/camnwalter/project-euler/utils"
 )
 
-func Thirteen() {
-	bytes, err := os.ReadFile("inputs/13.txt")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+func Thirteen() int {
+	lines, _ := utils.GetFileLines("inputs/13.txt")
 
-	nums := strings.Split(string(bytes), "\n")
+	out := make([]int, 0)
 
 	carry := 0
-
-	digits := make([]string, 10)
-
-	for col := len(nums[0]) - 1; col >= 0; col-- {
-		sum := carry
-		for _, num := range nums {
-			digit := int(num[col] - '0')
-			sum += digit
+	for i := len(lines[0]) - 1; i >= 0; i-- {
+		partialSum := carry
+		for _, line := range lines {
+			digit := int(line[i] - '0')
+			partialSum += digit
 		}
 
-		if col < 10 {
-			digits[col] = strconv.Itoa(sum % 10)
-		}
-		carry = sum / 10
+		out = append(out, partialSum%10)
+		carry = partialSum / 10
 	}
 
-	if carry > 0 {
-		carryString := strconv.Itoa(carry)
-		digitsToReplace := len(carryString)
-
-		fmt.Print("digits = ")
-		fmt.Print(carry)
-		fmt.Println(strings.Join(digits[0:10-digitsToReplace], ""))
-	} else {
-		fmt.Println("digits =", strings.Join(digits, ""))
+	for carry != 0 {
+		out = append(out, carry%10)
+		carry /= 10
 	}
+
+	for len(out) > 10 {
+		out = slices.Delete(out, 0, 1)
+	}
+
+	sum := 0
+	place := 1
+	for _, digit := range out {
+		sum += digit * place
+		place *= 10
+	}
+
+	return sum
 }

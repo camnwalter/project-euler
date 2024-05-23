@@ -1,41 +1,44 @@
 package problems
 
 import (
-	"fmt"
 	"slices"
 
 	"github.com/camnwalter/project-euler/utils"
 )
 
-func FortyNine() {
-	primes := PrimeSieve(10_000)
+func FortyNine() int {
+	primes := utils.PrimeSieve(10_000)
 
+	var p1 int
+	var p2 int
+	var p3 int
 outer:
-	for _, p1 := range primes {
+	for _, p1 = range primes {
 		if p1 == 1487 {
 			continue
 		}
 
-		for _, p2 := range primes {
-			if p2 == p1 || !IsPermutation(p1, p2) {
+		for _, p2 = range primes {
+			if p2 == p1 || !isPermutation(p1, p2) {
 				continue
 			}
 
-			for _, p3 := range primes {
-				if p3 == p1 || p3 == p2 || !IsPermutation(p1, p3) {
+			for _, p3 = range primes {
+				if p3 == p1 || p3 == p2 || !isPermutation(p1, p3) {
 					continue
 				}
 
 				if p1-p2 == p2-p3 {
-					fmt.Printf("output = %d%d%d\n", p1, p2, p3)
 					break outer
 				}
 			}
 		}
 	}
+
+	return p1*100_000_000 + p2*10_000 + p3
 }
 
-func IsPermutation(a int, b int) bool {
+func isPermutation(a int, b int) bool {
 	aDigits := utils.ToDigitArray(a)
 	slices.Sort(aDigits)
 	bDigits := utils.ToDigitArray(b)

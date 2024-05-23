@@ -1,25 +1,21 @@
 package problems
 
-import (
-	"fmt"
-)
-
-func Fourteen() {
+func Fourteen() int {
 	longestChain := 0
 	longestNumber := 0
 
 	for n := 1; n < 1_000_000; n++ {
-		collatz := Collatz(n)
+		collatz := collatz(n)
 		if collatz > longestChain {
 			longestChain = collatz
 			longestNumber = n
 		}
 	}
 
-	fmt.Println("n =", longestNumber)
+	return longestNumber
 }
 
-func Collatz(n int) int {
+func collatz(n int) int {
 	count := 1
 	for n != 1 {
 		if n%2 == 0 {

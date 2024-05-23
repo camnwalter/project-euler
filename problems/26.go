@@ -1,25 +1,23 @@
 package problems
 
-import "fmt"
-
-func TwentySix() {
+func TwentySix() int {
 	max := 0
 	maxNum := 0
 	for i := 1; i < 1000; i++ {
-		_, cur := LongDivision(1, i)
+		_, cur := longDivision(1, i)
 		if cur > max {
 			max = cur
 			maxNum = i
 		}
 	}
 
-	fmt.Println("max repeating length =", maxNum)
+	return maxNum
 }
 
 // a / b
 //
 // returns ([whole, ...decimal], length)
-func LongDivision(a int, b int) ([]int, int) {
+func longDivision(a int, b int) ([]int, int) {
 	result := make([]int, 0)
 
 	if a < b {

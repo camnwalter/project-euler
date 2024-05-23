@@ -1,8 +1,6 @@
 package problems
 
-import "fmt"
-
-func FortyEight() {
+func FortyEight() int {
 	sum := 0
 	mod := 10_000_000_000
 
@@ -19,5 +17,5 @@ func FortyEight() {
 		sum %= mod
 	}
 
-	fmt.Println(sum)
+	return sum
 }

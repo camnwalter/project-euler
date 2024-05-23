@@ -1,12 +1,8 @@
 package problems
 
-import (
-	"fmt"
+import "github.com/camnwalter/project-euler/utils"
 
-	"github.com/camnwalter/project-euler/utils"
-)
-
-func ThirtyTwo() {
+func ThirtyTwo() int {
 	sum := 0
 
 	// 1d x 4d = 4d
@@ -22,7 +18,7 @@ func ThirtyTwo() {
 				digits = append(digits, utils.ToDigitArray(y)...)
 				digits = append(digits, utils.ToDigitArray(x*y)...)
 
-				if IsPandigital(utils.FromDigitArray(digits)) {
+				if isPandigital(digits) {
 					sum += product
 					pandigitals[product] = true
 				}
@@ -30,11 +26,10 @@ func ThirtyTwo() {
 		}
 	}
 
-	fmt.Println("sum of pandigital products =", sum)
+	return sum
 }
 
-func IsPandigital(n int) bool {
-	digits := utils.ToDigitArray(n)
+func isPandigital(digits []int) bool {
 
 	if len(digits) != 9 {
 		return false

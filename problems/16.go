@@ -1,12 +1,8 @@
 package problems
 
-import (
-	"fmt"
+import "github.com/camnwalter/project-euler/big"
 
-	"github.com/camnwalter/project-euler/big"
-)
-
-func Sixteen() {
+func Sixteen() int {
 	bigNumber := big.New(2)
 	out := big.New(1)
 
@@ -19,5 +15,5 @@ func Sixteen() {
 		sum += digit
 	}
 
-	fmt.Println("sum =", sum)
+	return sum
 }

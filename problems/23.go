@@ -1,12 +1,8 @@
 package problems
 
-import (
-	"fmt"
+import "github.com/camnwalter/project-euler/utils"
 
-	"github.com/camnwalter/project-euler/utils"
-)
-
-func TwentyThree() {
+func TwentyThree() int {
 	abundantNumbers := make(map[int]bool, 0)
 
 	for i := 1; i < 28123; i++ {
@@ -29,9 +25,9 @@ func TwentyThree() {
 		}
 	}
 
-	fmt.Println("sum of non-abundant nums =", sum)
+	return sum
 }
 
 func isAbundant(n int) bool {
-	return utils.SumArray(GetProperDivisors(n)) > n
+	return utils.SumArray(utils.GetProperDivisors(n)) > n
 }

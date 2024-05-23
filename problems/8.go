@@ -1,19 +1,12 @@
 package problems
 
 import (
-	"fmt"
 	"os"
 	"strings"
 )
 
-func Eight() {
-
-	bytes, err := os.ReadFile("inputs/8.txt")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
+func Eight() int {
+	bytes, _ := os.ReadFile("inputs/8.txt")
 	contents := strings.ReplaceAll(string(bytes), "\n", "")
 
 	largestProduct := 0
@@ -38,5 +31,5 @@ outer:
 		}
 	}
 
-	fmt.Println("largest product =", largestProduct)
+	return largestProduct
 }

@@ -1,19 +1,14 @@
 package problems
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 
 	"github.com/camnwalter/project-euler/utils"
 )
 
-func Eighteen() {
-	lines, err := utils.GetFileLines("inputs/18.txt")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+func Eighteen() int {
+	lines, _ := utils.GetFileLines("inputs/18.txt")
 
 	data := make([][]int, len(lines))
 
@@ -27,10 +22,10 @@ func Eighteen() {
 		}
 	}
 
-	fmt.Println("max path =", TriangleWeight(data))
+	return triangleWeight(data)
 }
 
-func TriangleWeight(data [][]int) int {
+func triangleWeight(data [][]int) int {
 	return triangleWeightHelper(data, len(data)-1, 0, 0)
 }
 

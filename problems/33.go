@@ -1,13 +1,12 @@
 package problems
 
 import (
-	"fmt"
 	"slices"
 
 	"github.com/camnwalter/project-euler/utils"
 )
 
-func ThirtyThree() {
+func ThirtyThree() int {
 	num := 1
 	denom := 1
 
@@ -50,7 +49,7 @@ func ThirtyThree() {
 
 	gcf := utils.GCF(num, denom)
 
-	fmt.Println("product denominator =", denom/gcf)
+	return denom / gcf
 }
 
 // a / b

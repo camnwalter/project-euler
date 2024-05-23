@@ -1,15 +1,13 @@
 package problems
 
-import "fmt"
-
 var days = []string{"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"}
 
-func Nineteen() {
+func Nineteen() int {
 	sundayFirsts := 0
 	index := 1
 
 	for month := 0; month < 12; month++ {
-		index += DaysInMonth(month, 1900)
+		index += daysInMonth(month, 1900)
 		index %= len(days)
 	}
 
@@ -19,15 +17,15 @@ func Nineteen() {
 				sundayFirsts++
 			}
 
-			index += DaysInMonth(month, year)
+			index += daysInMonth(month, year)
 			index %= len(days)
 		}
 	}
 
-	fmt.Println("1sts that were sundays =", sundayFirsts)
+	return sundayFirsts
 }
 
-func DaysInMonth(month int, year int) int {
+func daysInMonth(month int, year int) int {
 	switch month {
 	case 1:
 		if year%4 != 0 || (year%100 == 0 && year%400 != 0) {

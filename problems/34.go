@@ -1,16 +1,12 @@
 package problems
 
-import (
-	"fmt"
+import "github.com/camnwalter/project-euler/utils"
 
-	"github.com/camnwalter/project-euler/utils"
-)
-
-func ThirtyFour() {
+func ThirtyFour() int {
 	// max = 9! * digits
 	//     = 362880 * digits
 
-	max := 7 * Factorial(9)
+	max := 7 * utils.Factorial(9)
 	// 7*9! < 9_999_999
 
 	sum := 0
@@ -21,8 +17,7 @@ func ThirtyFour() {
 		}
 	}
 
-	fmt.Println("sum of digit factorial sums =", sum)
-
+	return sum
 }
 
 func digitFactorials(n int) bool {
@@ -31,7 +26,7 @@ func digitFactorials(n int) bool {
 	sum := 0
 
 	for _, digit := range digits {
-		sum += Factorial(digit)
+		sum += utils.Factorial(digit)
 	}
 
 	return sum == n

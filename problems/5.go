@@ -1,8 +1,6 @@
 package problems
 
-import "fmt"
-
-func Five() {
+func Five() int {
 	num := 20
 
 	for i := 2; i <= 20; i++ {
@@ -13,5 +11,5 @@ func Five() {
 		}
 	}
 
-	fmt.Println("evenly divisible =", num)
+	return num
 }

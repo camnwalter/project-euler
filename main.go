@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 	"strconv"
 
@@ -16,8 +16,7 @@ func main() {
 
 	problemNumber, err := strconv.Atoi(os.Args[1])
 	if err != nil {
-		fmt.Println(err)
-		return
+		log.Fatal(err)
 	}
 
 	problems.Problem(problemNumber)

@@ -1,28 +1,17 @@
 package problems
 
 import (
-	"fmt"
-	"os"
 	"strconv"
 	"strings"
 
 	"github.com/camnwalter/project-euler/utils"
 )
 
-func Eleven() {
-	bytes, err := os.ReadFile("inputs/11.txt")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	file := string(bytes)
-
+func Eleven() int {
+	lines, _ := utils.GetFileLines("inputs/11.txt")
 	nums := make([][]int, 20)
 
-	lines := strings.Split(file, "\n")
 	for r, line := range lines {
-
 		rowData := strings.Split(line, " ")
 
 		row := make([]int, 20)
@@ -39,12 +28,12 @@ func Eleven() {
 	maxDiagonal := 0
 
 	for _, r := range nums {
-		product := FindMaxProduct(r, 4)
+		product := findMaxProduct(r, 4)
 		maxHorizontal = utils.Max(maxHorizontal, product)
 	}
 
-	for _, r := range Transpose(nums) {
-		product := FindMaxProduct(r, 4)
+	for _, r := range transpose(nums) {
+		product := findMaxProduct(r, 4)
 		maxVertical = utils.Max(maxVertical, product)
 	}
 
@@ -62,17 +51,17 @@ func Eleven() {
 				}
 			}
 
-			productRight := FindMaxProduct(rightDiagonal, 4)
-			productLeft := FindMaxProduct(leftDiagonal, 4)
+			productRight := findMaxProduct(rightDiagonal, 4)
+			productLeft := findMaxProduct(leftDiagonal, 4)
 
 			maxDiagonal = utils.Max(maxDiagonal, productRight, productLeft)
 		}
 	}
 
-	fmt.Println("max of four in each direction =", utils.Max(maxHorizontal, maxVertical, maxDiagonal))
+	return utils.Max(maxHorizontal, maxVertical, maxDiagonal)
 }
 
-func FindMaxProduct(data []int, terms int) int {
+func findMaxProduct(data []int, terms int) int {
 	max := 0
 
 	for i := 0; i < len(data); i++ {
@@ -87,7 +76,7 @@ func FindMaxProduct(data []int, terms int) int {
 	return max
 }
 
-func Transpose(data [][]int) [][]int {
+func transpose(data [][]int) [][]int {
 	transposed := make([][]int, len(data))
 
 	for r := 0; r < len(data); r++ {

@@ -1,8 +1,6 @@
 package problems
 
-import "fmt"
-
-func Six() {
+func Six() int {
 	squaredSum := 0
 	sumSquared := 0
 
@@ -13,5 +11,5 @@ func Six() {
 
 	squaredSum *= squaredSum
 
-	fmt.Println("difference =", squaredSum-sumSquared)
+	return squaredSum - sumSquared
 }

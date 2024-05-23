@@ -1,8 +1,6 @@
 package problems
 
-import "fmt"
-
-func One() {
+func One() int {
 	sum := 0
 	for i := 1; i < 1000; i++ {
 		if i%3 == 0 || i%5 == 0 {
@@ -10,5 +8,5 @@ func One() {
 		}
 	}
 
-	fmt.Println("sum =", sum)
+	return sum
 }

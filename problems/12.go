@@ -1,42 +1,18 @@
 package problems
 
-import "fmt"
+import "github.com/camnwalter/project-euler/utils"
 
-func Twelve() {
+func Twelve() int {
 	n := 1
-	num := Triangle(n)
-	for NumDivisors(num) < 500 {
+	num := triangle(n)
+	for len(utils.GetProperDivisors(num))+1 < 500 {
 		n++
-		num = Triangle(n)
+		num = triangle(n)
 	}
 
-	fmt.Println("triangle divisors =", num)
+	return num
 }
 
-func Triangle(n int) int {
-	sum := 0
-
-	for i := 1; i <= n; i++ {
-		sum += i
-	}
-
-	return sum
-}
-
-func NumDivisors(n int) int {
-	if n == 1 {
-		return 1
-	}
-
-	divisors := 0
-	max := n / 2
-
-	for i := 1; i < max; i++ {
-		if n%i == 0 {
-			divisors += 2
-			max = n / i
-		}
-	}
-
-	return divisors
+func triangle(n int) int {
+	return n * (n + 1) / 2
 }

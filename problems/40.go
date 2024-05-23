@@ -1,17 +1,14 @@
 package problems
 
-import (
-	"fmt"
+import "github.com/camnwalter/project-euler/utils"
 
-	"github.com/camnwalter/project-euler/utils"
-)
-
-func Forty() {
+func Forty() int {
 	product := 1
 	for n := 1; n <= 1_000_000; n *= 10 {
 		product *= getNthDigit(n)
 	}
-	fmt.Println(product)
+
+	return product
 }
 
 func getNthDigit(n int) int {

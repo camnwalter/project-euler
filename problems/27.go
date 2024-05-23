@@ -1,8 +1,8 @@
 package problems
 
-import "fmt"
+import "github.com/camnwalter/project-euler/utils"
 
-func TwentySeven() {
+func TwentySeven() int {
 	var max int
 	var maxA int
 	var maxB int
@@ -10,7 +10,7 @@ func TwentySeven() {
 	for a := -999; a <= 999; a++ {
 		for b := -1000; b <= 1000; b++ {
 			n := 0
-			for ; IsPrime(n*n + a*n + b); n++ {
+			for ; utils.IsPrime(n*n + a*n + b); n++ {
 			}
 
 			if n > max {
@@ -21,5 +21,5 @@ func TwentySeven() {
 		}
 	}
 
-	fmt.Println("max a*b =", maxA*maxB)
+	return maxA * maxB
 }

@@ -1,18 +1,14 @@
 package problems
 
 import (
-	"fmt"
-	"math"
 	"os"
 	"strings"
+
+	"github.com/camnwalter/project-euler/utils"
 )
 
-func FortyTwo() {
-	bytes, err := os.ReadFile("inputs/42.txt")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+func FortyTwo() int {
+	bytes, _ := os.ReadFile("inputs/42.txt")
 
 	words := strings.Split(strings.ReplaceAll(string(bytes), "\"", ""), ",")
 
@@ -24,19 +20,10 @@ func FortyTwo() {
 			wordSum += int(c - 'A' + 1)
 		}
 
-		if IsTriangle(wordSum) {
+		if utils.IsTriangle(wordSum) {
 			triangles++
 		}
 	}
 
-	fmt.Println("number of triangle words =", triangles)
-}
-
-func IsTriangle(t int) bool {
-	// t = n (n + 1) / 2
-	// .5n^2 + .5n - t = 0
-	// t = (-1 + sqrt(1 + 8t)) / 2
-
-	n := (-1 + math.Sqrt(float64(1+8*t))) / 2
-	return math.Round(n) == n
+	return triangles
 }

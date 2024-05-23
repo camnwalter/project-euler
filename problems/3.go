@@ -1,10 +1,6 @@
 package problems
 
-import (
-	"fmt"
-)
-
-func Three() {
+func Three() int {
 	num := 600851475143
 	max := 1
 
@@ -15,5 +11,5 @@ func Three() {
 		}
 	}
 
-	fmt.Println("max =", max)
+	return max
 }

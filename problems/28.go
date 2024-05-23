@@ -1,8 +1,6 @@
 package problems
 
-import "fmt"
-
-func TwentyEight() {
+func TwentyEight() int {
 	// 3, 13, 31 => +2, +10, +18
 	// 5, 17, 37 => +4, +12, +20
 	// 7, 21, 43 => +6, +14, +22
@@ -29,5 +27,5 @@ func TwentyEight() {
 		sum += a + b + c + d
 	}
 
-	fmt.Println("sum =", sum)
+	return sum
 }

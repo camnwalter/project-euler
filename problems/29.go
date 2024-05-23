@@ -1,13 +1,11 @@
 package problems
 
 import (
-	"fmt"
-
 	"github.com/camnwalter/project-euler/big"
 	"github.com/camnwalter/project-euler/utils"
 )
 
-func TwentyNine() {
+func TwentyNine() int {
 	min := 2
 	max := 100
 
@@ -25,5 +23,5 @@ func TwentyNine() {
 		}
 	}
 
-	fmt.Println("uniques =", len(uniques))
+	return len(uniques)
 }

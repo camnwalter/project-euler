@@ -1,28 +1,27 @@
 package problems
 
 import (
-	"fmt"
 	"slices"
 
 	"github.com/camnwalter/project-euler/utils"
 )
 
-func ThirtySeven() {
+func ThirtySeven() int {
 	count := 0
 	sum := 0
 
 	for n := 11; count != 11; n++ {
-		if IsTruncatedPrime(n) {
+		if isTruncatedPrime(n) {
 			count++
 			sum += n
 		}
 	}
 
-	fmt.Println("truncated primes sum =", sum)
+	return sum
 }
 
-func IsTruncatedPrime(n int) bool {
-	if !IsPrime(n) {
+func isTruncatedPrime(n int) bool {
+	if !utils.IsPrime(n) {
 		return false
 	}
 
@@ -30,7 +29,7 @@ func IsTruncatedPrime(n int) bool {
 	digits2 := utils.ToDigitArray(n)
 
 	for len(digits1) > 0 {
-		if !IsPrime(utils.FromDigitArray(digits1)) || !IsPrime(utils.FromDigitArray(digits2)) {
+		if !utils.IsPrime(utils.FromDigitArray(digits1)) || !utils.IsPrime(utils.FromDigitArray(digits2)) {
 			return false
 		}
 

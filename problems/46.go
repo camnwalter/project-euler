@@ -1,15 +1,17 @@
 package problems
 
 import (
-	"fmt"
 	"math"
+
+	"github.com/camnwalter/project-euler/utils"
 )
 
-func FortySix() {
-	primes := PrimeSieve(100_001)
+func FortySix() int {
+	primes := utils.PrimeSieve(100_001)
 
-	for n := 9; ; n += 2 {
-		if IsPrime(n) {
+	var n int
+	for n = 9; ; n += 2 {
+		if utils.IsPrime(n) {
 			continue
 		}
 
@@ -34,8 +36,9 @@ func FortySix() {
 		}
 
 		if !found {
-			fmt.Println("can't make", n)
 			break
 		}
 	}
+
+	return n
 }

@@ -1,13 +1,12 @@
 package problems
 
 import (
-	"fmt"
 	"math"
 
 	"github.com/camnwalter/project-euler/utils"
 )
 
-func Thirty() {
+func Thirty() int {
 	n := 2
 	sum := 0
 
@@ -30,5 +29,5 @@ func Thirty() {
 		digits = int(math.Log10(float64(n))) + 1
 	}
 
-	fmt.Println("sum of 5ths =", sum)
+	return sum
 }

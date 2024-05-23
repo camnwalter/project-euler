@@ -1,9 +1,16 @@
 package problems
 
-import "fmt"
+import (
+	"log"
+	"strconv"
+	"sync"
+	"time"
+
+	"github.com/camnwalter/project-euler/utils"
+)
 
 func Problem(num int) {
-	problems := []func(){
+	problems := []func() int{
 		One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven,
 		Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen,
 		Nineteen, Twenty, TwentyOne, TwentyTwo, TwentyThree, TwentyFour,
@@ -14,16 +21,42 @@ func Problem(num int) {
 		FortyNine, Fifty,
 	}
 
+	answers, _ := utils.GetFileLines("answers.txt")
+	start := time.Now()
+
+	log.SetFlags(0)
+
 	if num == 0 {
-		fmt.Println("Running all problems.")
-		fmt.Println()
+		log.Println("Running all problems.")
+		log.Println()
+
+		var wg sync.WaitGroup
 
 		for i, problem := range problems {
-			fmt.Print("Problem ", i+1, ": ")
-			problem()
+			wg.Add(1)
+
+			go func(i int, problem func() int) {
+				defer wg.Done()
+				actual := strconv.Itoa(problem())
+				if i < len(answers) && actual != answers[i] {
+					log.Printf("Problem %d: Incorrect! Expected %s, got %s\n", i+1, answers[i], actual)
+				} else {
+					log.Printf("Problem %d: %s\n", i+1, actual)
+				}
+			}(i, problem)
+		}
+
+		wg.Wait()
+		log.Printf("Time elapsed: %d ms\n", time.Since(start).Milliseconds())
+	} else if num <= len(problems) {
+		i := num - 1
+		actual := strconv.Itoa(problems[i]())
+		if i < len(answers) && actual != answers[i] {
+			log.Fatalf("Problem %d: Incorrect! Expected %s, got %s\n", i+1, answers[i], actual)
+		} else {
+			log.Printf("Problem %d: %s | Time elapsed: %d ms\n", i+1, actual, time.Since(start).Milliseconds())
 		}
 	} else {
-		fmt.Print("Problem ", num, ": ")
-		problems[num-1]()
+		log.Fatalf("Invalid problem number. Valid numbers are 1-%d\n", len(problems))
 	}
 }

@@ -1,17 +1,17 @@
 package problems
 
 import (
-	"fmt"
+	"log"
 	"slices"
 	"strings"
 
 	"github.com/camnwalter/project-euler/utils"
 )
 
-func TwentyTwo() {
+func TwentyTwo() int {
 	lines, err := utils.GetFileLines("inputs/22.txt")
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 
 	names := strings.Split(lines[0], ",")
@@ -22,7 +22,7 @@ func TwentyTwo() {
 		sum += (i + 1) * nameValue(name)
 	}
 
-	fmt.Println("names value =", sum)
+	return sum
 }
 
 func nameValue(name string) int {

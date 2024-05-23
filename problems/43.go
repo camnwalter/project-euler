@@ -1,17 +1,13 @@
 package problems
 
-import (
-	"fmt"
+import "github.com/camnwalter/project-euler/utils"
 
-	"github.com/camnwalter/project-euler/utils"
-)
-
-func FortyThree() {
-	primes := PrimeSieve(18)
+func FortyThree() int {
+	primes := utils.PrimeSieve(18)
 
 	sum := 0
 
-	for _, pan := range GeneratePandigitals(0, 9) {
+	for _, pan := range generatePandigitals(0, 9) {
 		index := 0
 		good := true
 
@@ -29,10 +25,10 @@ func FortyThree() {
 		}
 	}
 
-	fmt.Println("sum of pandigitals =", sum)
+	return sum
 }
 
-func GeneratePandigitals(min int, max int) []int {
+func generatePandigitals(min int, max int) []int {
 	digits := make([]int, 0)
 	for i := min; i <= max; i++ {
 		digits = append(digits, i)

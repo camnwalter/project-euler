@@ -1,11 +1,8 @@
 package problems
 
-import (
-	"fmt"
-	"math"
-)
+import "github.com/camnwalter/project-euler/utils"
 
-func FortyFour() {
+func FortyFour() int {
 	var difference int
 
 	for i := 1; i < 10_000; i++ {
@@ -16,21 +13,12 @@ func FortyFour() {
 			sum := p_i + p_j
 			diff := p_j - p_i
 
-			if IsPentagonal(sum) && IsPentagonal(diff) {
+			if utils.IsPentagonal(sum) && utils.IsPentagonal(diff) {
 				difference = diff
 				break
 			}
 		}
 	}
 
-	fmt.Println("min pentagonal diff =", difference)
-}
-
-func IsPentagonal(p int) bool {
-	// p = n (3n - 1) / 2
-	// 1.5n^2 - .5n - p = 0
-	// n = (1 + sqrt(1 + 24p)) / 6
-
-	n := (1 + math.Sqrt(float64(1+24*p))) / 6
-	return math.Round(n) == n
+	return difference
 }
