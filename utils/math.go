@@ -9,6 +9,11 @@ import (
 
 func Combination(n int, k int) int {
 	product := 1
+
+	if n-k < k {
+		k = n - k
+	}
+
 	for i := 0; i < k; i++ {
 		product *= (n - i)
 		product /= (i + 1)
