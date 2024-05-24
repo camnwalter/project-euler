@@ -1,10 +1,6 @@
 package problems
 
-import (
-	"slices"
-
-	"github.com/camnwalter/project-euler/utils"
-)
+import "github.com/camnwalter/project-euler/utils"
 
 func FortyNine() int {
 	primes := utils.PrimeSieve(10_000)
@@ -19,12 +15,12 @@ outer:
 		}
 
 		for _, p2 = range primes {
-			if p2 == p1 || !isPermutation(p1, p2) {
+			if p2 == p1 || !utils.IsPermutation(p1, p2) {
 				continue
 			}
 
 			for _, p3 = range primes {
-				if p3 == p1 || p3 == p2 || !isPermutation(p1, p3) {
+				if p3 == p1 || p3 == p2 || !utils.IsPermutation(p1, p3) {
 					continue
 				}
 
@@ -36,23 +32,4 @@ outer:
 	}
 
 	return p1*100_000_000 + p2*10_000 + p3
-}
-
-func isPermutation(a int, b int) bool {
-	aDigits := utils.ToDigitArray(a)
-	slices.Sort(aDigits)
-	bDigits := utils.ToDigitArray(b)
-	slices.Sort(bDigits)
-
-	if len(aDigits) != len(bDigits) {
-		return false
-	}
-
-	for i := range len(aDigits) {
-		if aDigits[i] != bDigits[i] {
-			return false
-		}
-	}
-
-	return true
 }

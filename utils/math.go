@@ -144,6 +144,25 @@ func IsPerfectSquare(n int) (bool, int) {
 	return math.Round(sqrt) == sqrt, int(sqrt)
 }
 
+func IsPermutation(a int, b int) bool {
+	aDigits := ToDigitArray(a)
+	slices.Sort(aDigits)
+	bDigits := ToDigitArray(b)
+	slices.Sort(bDigits)
+
+	if len(aDigits) != len(bDigits) {
+		return false
+	}
+
+	for i := range len(aDigits) {
+		if aDigits[i] != bDigits[i] {
+			return false
+		}
+	}
+
+	return true
+}
+
 func IsPrime(n int) bool {
 	if n <= 1 {
 		return false
