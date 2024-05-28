@@ -15,6 +15,18 @@ func AddIfAbsent[T comparable](slice []T, values ...T) []T {
 	return slice
 }
 
+func ContainsDuplicates[T comparable](slice []T) bool {
+	for i := 0; i < len(slice); i++ {
+		for j := i + 1; j < len(slice); j++ {
+			if slice[i] == slice[j] {
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
 func DefaultSlice[T any](size int, initial T) []T {
 	out := make([]T, size)
 	for i := range size {
@@ -22,6 +34,16 @@ func DefaultSlice[T any](size int, initial T) []T {
 	}
 
 	return out
+}
+
+func Every[T any](slice []T, compareFunc func(val T, index int) bool) bool {
+	for i, v := range slice {
+		if !compareFunc(v, i) {
+			return false
+		}
+	}
+
+	return true
 }
 
 func Filter[T any](slice []T, filterFunc func(val T, index int) bool) []T {

@@ -1,6 +1,10 @@
 package problems
 
-import "github.com/camnwalter/project-euler/utils"
+import (
+	"math"
+
+	"github.com/camnwalter/project-euler/utils"
+)
 
 func ThirtyNine() int {
 	maxSolutions := 0
@@ -11,8 +15,11 @@ func ThirtyNine() int {
 
 		for a := 1; a < p; a++ {
 			for b := 1; b < p-a; b++ {
-				if yes, c := utils.IsPerfectSquare(a*a + b*b); yes && a+b+c == p {
-					solutions++
+				if utils.IsSquare(a*a + b*b) {
+					c := int(math.Sqrt(float64(a*a + b*b)))
+					if a+b+c == p {
+						solutions++
+					}
 				}
 			}
 		}

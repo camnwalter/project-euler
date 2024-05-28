@@ -1,6 +1,10 @@
 package problems
 
-import "github.com/camnwalter/project-euler/utils"
+import (
+	"math"
+
+	"github.com/camnwalter/project-euler/utils"
+)
 
 func Nine() int {
 	var a int
@@ -10,9 +14,12 @@ func Nine() int {
 outer:
 	for a = 1; a < 1000; a++ {
 		for b = 1; b < 1000; b++ {
-			if yes, cout := utils.IsPerfectSquare(a*a + b*b); yes && a+b+cout == 1000 {
-				c = cout
-				break outer
+			if utils.IsSquare(a*a + b*b) {
+				cout := int(math.Sqrt(float64(a*a + b*b)))
+				if a+b+cout == 1000 {
+					c = cout
+					break outer
+				}
 			}
 		}
 	}

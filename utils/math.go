@@ -134,6 +134,23 @@ func IsHexagonal(h int) bool {
 	return math.Round(n) == n
 }
 
+func IsHeptagonal(h int) bool {
+	// h = n (5n - 3) / 2
+	// 2h = n (5n - 3)
+	// 5n^2 - 3n - 2h = 0
+	// n = (3 + sqrt(9 + 40h)) / 10
+	n := (3 + math.Sqrt(float64(9+40*h))) / 10
+	return math.Round(n) == n
+}
+
+func IsOctagonal(o int) bool {
+	// o = n (3n - 2)
+	// 3n^2 - 2n - o = 0
+	// n = (4 + sqrt(4 + 12o)) / 6
+	n := (4 + math.Sqrt(float64(4+12*o))) / 6
+	return math.Round(n) == n
+}
+
 func IsPentagonal(p int) bool {
 	// p = n (3n - 1) / 2
 	// 1.5n^2 - .5n - p = 0
@@ -141,12 +158,6 @@ func IsPentagonal(p int) bool {
 
 	n := (1 + math.Sqrt(float64(1+24*p))) / 6
 	return math.Round(n) == n
-}
-
-func IsPerfectSquare(n int) (bool, int) {
-	sqrt := math.Sqrt(float64(n))
-
-	return math.Round(sqrt) == sqrt, int(sqrt)
 }
 
 func IsPermutation(a int, b int) bool {
@@ -188,6 +199,11 @@ func IsPrime(n int) bool {
 	}
 
 	return true
+}
+
+func IsSquare(n int) bool {
+	sqrt := math.Sqrt(float64(n))
+	return math.Round(sqrt) == sqrt
 }
 
 func IsTriangle(t int) bool {
@@ -275,4 +291,28 @@ func ToDigitArray(n int) []int {
 	}
 
 	return out
+}
+
+func Triangle(n int) int {
+	return n * (n + 1) / 2
+}
+
+func Square(n int) int {
+	return n * n
+}
+
+func Pentagon(n int) int {
+	return n * (3*n - 1) / 2
+}
+
+func Hexagon(n int) int {
+	return n * (2*n - 1)
+}
+
+func Heptagon(n int) int {
+	return n * (5*n - 3) / 2
+}
+
+func Octagon(n int) int {
+	return n * (3*n - 2)
 }

@@ -19,7 +19,7 @@ func Problem(num int) {
 		ThirtySeven, ThirtyEight, ThirtyNine, Forty, FortyOne, FortyTwo,
 		FortyThree, FortyFour, FortyFive, FortySix, FortySeven, FortyEight,
 		FortyNine, Fifty, FiftyOne, FiftyTwo, FiftyThree, FiftyFour, FiftyFive,
-		FiftySix, FiftySeven, FiftyEight, FiftyNine, Sixty,
+		FiftySix, FiftySeven, FiftyEight, FiftyNine, Sixty, nil, SixtyTwo,
 	}
 
 	answers, _ := utils.GetFileLines("answers.txt")
@@ -38,6 +38,10 @@ func Problem(num int) {
 
 			go func(i int, problem func() int) {
 				defer wg.Done()
+				if problem == nil {
+					return
+				}
+
 				actual := strconv.Itoa(problem())
 				if i < len(answers) && actual != answers[i] {
 					log.Printf("Problem %d: Incorrect! Expected %s, got %s\n", i+1, answers[i], actual)
@@ -52,10 +56,6 @@ func Problem(num int) {
 	} else if num <= len(problems) {
 		i := num - 1
 		actual := strconv.Itoa(problems[i]())
-
-		if i > len(answers) {
-			log.Fatalf("You forgot to add the answer to question %d!\n", i)
-		}
 
 		if i < len(answers) && actual != answers[i] {
 			log.Fatalf("Problem %d: Incorrect! Expected %s, got %s\n", i+1, answers[i], actual)
