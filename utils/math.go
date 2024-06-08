@@ -146,14 +146,15 @@ func IsHeptagonal(h int) bool {
 func IsOctagonal(o int) bool {
 	// o = n (3n - 2)
 	// 3n^2 - 2n - o = 0
-	// n = (4 + sqrt(4 + 12o)) / 6
-	n := (4 + math.Sqrt(float64(4+12*o))) / 6
+	// n = (2 + sqrt(4 + 12o)) / 6
+	n := (2 + math.Sqrt(float64(4+12*o))) / 6
 	return math.Round(n) == n
 }
 
 func IsPentagonal(p int) bool {
 	// p = n (3n - 1) / 2
-	// 1.5n^2 - .5n - p = 0
+	// 2p = n (3n - 1)
+	// 3n^2 - n - 2p = 0
 	// n = (1 + sqrt(1 + 24p)) / 6
 
 	n := (1 + math.Sqrt(float64(1+24*p))) / 6
@@ -208,7 +209,8 @@ func IsSquare(n int) bool {
 
 func IsTriangle(t int) bool {
 	// t = n (n + 1) / 2
-	// .5n^2 + .5n - t = 0
+	// 2t = n (n + 1)
+	// n^2 + n - 2t = 0
 	// t = (-1 + sqrt(1 + 8t)) / 2
 
 	n := (-1 + math.Sqrt(float64(1+8*t))) / 2

@@ -19,8 +19,8 @@ func Problem(num int) {
 		ThirtySeven, ThirtyEight, ThirtyNine, Forty, FortyOne, FortyTwo,
 		FortyThree, FortyFour, FortyFive, FortySix, FortySeven, FortyEight,
 		FortyNine, Fifty, FiftyOne, FiftyTwo, FiftyThree, FiftyFour, FiftyFive,
-		FiftySix, FiftySeven, FiftyEight, FiftyNine, Sixty, nil, SixtyTwo,
-		SixtyThree,
+		FiftySix, FiftySeven, FiftyEight, FiftyNine, Sixty, SixtyOne, SixtyTwo,
+		SixtyThree, nil, SixtyFive,
 	}
 
 	answers, _ := utils.GetFileLines("answers.txt")
@@ -58,7 +58,7 @@ func Problem(num int) {
 		i := num - 1
 		actual := strconv.Itoa(problems[i]())
 
-		if i < len(answers) && actual != answers[i] {
+		if i < len(answers) && answers[i] != "" && actual != answers[i] {
 			log.Fatalf("Problem %d: Incorrect! Expected %s, got %s\n", i+1, answers[i], actual)
 		} else {
 			log.Printf("Problem %d: %s | Time elapsed: %d ms\n", i+1, actual, time.Since(start).Milliseconds())
