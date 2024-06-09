@@ -44,7 +44,7 @@ func getPeriodLength(n int) int {
 
 		denom := n - c*c
 
-		num, denom := reduceFraction(b, denom)
+		num, denom := utils.ReduceFraction(b, denom)
 		num *= -c
 
 		a = int(math.Floor((sqrt + float64(num)) / float64(denom)))
@@ -53,9 +53,4 @@ func getPeriodLength(n int) int {
 	}
 
 	return len(seen) - slices.Index(seen, triple{a, b, c})
-}
-
-func reduceFraction(a int, b int) (int, int) {
-	gcf := utils.GCF(a, b)
-	return a / gcf, b / gcf
 }

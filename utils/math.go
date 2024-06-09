@@ -295,6 +295,11 @@ func PrimeSieve(upperBound int) []int {
 	return out
 }
 
+func ReduceFraction(a int, b int) (int, int) {
+	gcf := GCF(a, b)
+	return a / gcf, b / gcf
+}
+
 func SumArray(nums []int) int {
 	sum := 0
 
