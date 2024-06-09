@@ -7,6 +7,13 @@ import (
 	"strings"
 )
 
+func Abs(n int) int {
+	if n >= 0 {
+		return n
+	}
+	return -n
+}
+
 func Combination(n int, k int) int {
 	product := 1
 
@@ -70,6 +77,10 @@ func GCF(a int, b int) int {
 		}
 	}
 
+	if a < 0 && b < 0 {
+		return Min(commonFactors...)
+	}
+
 	return Max(commonFactors...)
 }
 
@@ -89,16 +100,26 @@ func GetFactors(n int) []int {
 	out = AddIfAbsent(out, 1)
 	out = AddIfAbsent(out, n)
 
+	if n < 0 {
+		out = AddIfAbsent(out, -1)
+		out = AddIfAbsent(out, Abs(n))
+	}
+
 	if n == 1 {
 		return out
 	}
 
-	max := n / 2
+	newN := Abs(n)
+
+	max := newN / 2
 
 	for i := 2; i <= max; i++ {
-		if n%i == 0 {
-			max = n / i
+		if newN%i == 0 {
+			max = newN / i
 			out = AddIfAbsent(out, i, max)
+			if n < 0 {
+				out = AddIfAbsent(out, -i, -max)
+			}
 		}
 	}
 
