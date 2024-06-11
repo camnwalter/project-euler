@@ -142,6 +142,48 @@ func (a *MyBigInt) Times(b *MyBigInt) *MyBigInt {
 	return &MyBigInt{Digits: out, Signum: signum}
 }
 
+func Compare(a *MyBigInt, b *MyBigInt) int {
+	if a.Signum == Zero && b.Signum == Zero {
+		return 0
+	}
+
+	if a.Signum < b.Signum {
+		return -1
+	}
+
+	if a.Signum > b.Signum {
+		return 1
+	}
+
+	if len(a.Digits) > len(b.Digits) {
+		if a.Signum == Negative {
+			return -1
+		}
+
+		return 1
+	}
+
+	if len(a.Digits) < len(b.Digits) {
+		if a.Signum == Negative {
+			return 1
+		}
+
+		return -1
+	}
+
+	for i := len(a.Digits) - 1; i >= 0; i-- {
+		if a.Digits[i] < b.Digits[i] {
+			return -1
+		}
+
+		if a.Digits[i] > b.Digits[i] {
+			return 1
+		}
+	}
+
+	return 0
+}
+
 func (big *MyBigInt) String() string {
 	var buf strings.Builder
 
