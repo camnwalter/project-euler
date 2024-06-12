@@ -5,12 +5,23 @@ func SixtyNine() int {
 }
 
 func totient(n int, primes []int) int {
-	count := float64(n)
+	// copied optimized formula
 
-	for _, factor := range primeFactorize(n, primes) {
-		diff := 1 - 1/float64(factor)
-		count *= diff
+	result := n
+
+	for i := 0; primes[i]*primes[i] <= n; i++ {
+		if n%primes[i] == 0 {
+			result -= (result / primes[i])
+
+			for n%primes[i] == 0 {
+				n /= primes[i]
+			}
+		}
 	}
 
-	return int(count)
+	if n > 1 {
+		result -= result / n
+	}
+
+	return result
 }
