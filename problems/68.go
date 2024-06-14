@@ -1,7 +1,6 @@
 package problems
 
 import (
-	"log"
 	"slices"
 	"strconv"
 	"strings"
@@ -11,6 +10,9 @@ import (
 
 func SixtyEight() int {
 	perms := utils.Permutations([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+	perms = utils.Filter(perms, func(val []int, _ int) bool {
+		return slices.Index(val, 10) >= 5
+	})
 
 	max := 0
 
@@ -49,13 +51,7 @@ outer:
 			}
 		}
 
-		str := buf.String()
-		if len(str) == 17 {
-			continue
-		}
-
-		value, _ := strconv.Atoi(str)
-		log.Println(str, total)
+		value, _ := strconv.Atoi(buf.String())
 		if value > max {
 			max = value
 		}
