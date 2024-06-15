@@ -61,27 +61,11 @@ func FromDigitArray(n []int) int {
 }
 
 func GCF(a int, b int) int {
-	aFactors := GetFactors(a)
-	bFactors := GetFactors(b)
-
-	commonFactors := make([]int, 0)
-	for _, factor := range aFactors {
-		if slices.Contains(bFactors, factor) {
-			commonFactors = AddIfAbsent(commonFactors, factor)
-		}
+	if a == 0 {
+		return b
 	}
 
-	for _, factor := range bFactors {
-		if slices.Contains(aFactors, factor) {
-			commonFactors = AddIfAbsent(commonFactors, factor)
-		}
-	}
-
-	if a < 0 && b < 0 {
-		return Min(commonFactors...)
-	}
-
-	return Max(commonFactors...)
+	return GCF(b%a, a)
 }
 
 // place (ones = 1, tens = 2, etc)
