@@ -22,6 +22,7 @@ func Problem(num int) {
 		FiftySix, FiftySeven, FiftyEight, FiftyNine, Sixty, SixtyOne, SixtyTwo,
 		SixtyThree, SixtyFour, SixtyFive, SixtySix, SixtySeven, SixtyEight,
 		SixtyNine, Seventy, SeventyOne, SeventyTwo, SeventyThree, SeventyFour,
+		SeventyFive,
 	}
 
 	answers, _ := utils.GetFileLines("answers.txt")
